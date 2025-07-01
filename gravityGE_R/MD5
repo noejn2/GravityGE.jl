@@ -1,7 +1,0 @@
-5acfa45da63c34cd0ffceca8a7b3d78d *DESCRIPTION
-ec9be3358d05db4591b5626393352053 *LICENSE
-586a58c8dd3d3d1473bbf3273eff48e9 *NAMESPACE
-5ccc1065b591973c4b5250e50172f337 *R/gravityGE.R
-f1007a85d1c9e9af90653d8696eb6080 *man/gravityGE.Rd
-815613417b7b9d44bdd5713afa5bcbe7 *tests/testthat.R
-dec27b61b0c4dedba94570a3565a0c8d *tests/testthat/test-gravityGE.R
