@@ -15,7 +15,13 @@ Pkg.add(url="https://github.com/noejn2/GravityGE.jl")
 using GravityGE, DataFrames
 
 # Prepare your trade_data DataFrame
-df = DataFrame(orig = ["A", "A", "B", "B"], dest = ["A", "B", "A", "B"], flow = [100, 50, 30, 80])
+```julia
+df = DataFrame(
+    orig = ["A", "A", "B", "B"], 
+    dest = ["A", "B", "A", "B"], 
+    flow = [100, 50, 30, 80]
+    )
+```
 
 # Solve the GE model
 result = gravityGE(df)
