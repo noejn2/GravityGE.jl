@@ -17,8 +17,8 @@ using GravityGE, DataFrames
 # Prepare your trade_data DataFrame
 ```julia
 df = DataFrame(
-    orig = ["A", "A", "B", "B"], 
-    dest = ["A", "B", "A", "B"], 
+    orig = ["A", "A", "B", "B"],
+    dest = ["A", "B", "A", "B"],
     flow = [100, 50, 30, 80]
     )
 ```
@@ -31,8 +31,3 @@ result[:new_trade]
 result[:new_welfare]
 ```
 
-![Build Status](https://github.com/noejn2/GravityGE.jl/actions/workflows/CI.yml/badge.svg)
-
-
-```markdown
-[![](https://github.com/noejn2/GravityGE.jl/actions/workflows/Documenter.yml/badge.svg)](https://noejn2.github.io/GravityGE.jl/)

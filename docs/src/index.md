@@ -9,6 +9,6 @@ This package solves a one-sector Armington-CES gravity model with general equili
 ```julia
 using GravityGE, DataFrames
 
-flows = DataFrame(orig = ["A", "A", "B", "B"], dest = ["A", "B", "A", "B"], flow = [10.0, 5.0, 6.0, 4.0])
+flows = DataFrame(origin = ["A", "A", "B", "B"], desination = ["A", "B", "A", "B"], values = [10.0, 5.0, 6.0, 4.0])
 result = gravityGE(flows)
 ```

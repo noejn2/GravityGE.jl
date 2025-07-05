@@ -1,16 +1,12 @@
 module GravityGE
-export gravityGE
-using DataFrames, LinearAlgebra, Statistics
-
-include("initializers.jl")
-
-
-include("model.jl")
 
 export gravityGE
+using DataFrames, LinearAlgebra, Statistics, Infiltrator
 
-include("original_model.jl")
-export original_gravityGE
+include("initializers.jl") # Helper functions
+include("TradeData.jl") # TradeData Struct
+include("model.jl") # Main model
 
+export gravityGE
 
-end # module gravityGE
+end # module GravityGE
