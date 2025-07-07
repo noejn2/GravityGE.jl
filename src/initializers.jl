@@ -15,6 +15,40 @@ function variable_checks(
 
 end
 
+function is_square_trade_matrix(df::DataFrame)
+
+    all_regions = union(df.origin, df.destination)
+    expected_pairs = Set((o, d) for o in all_regions, d in all_regions)
+
+    return length(expected_pairs) == length(df.origin)
+end
+
+function complete_square_matrix(
+    df::DataFrame,
+    a_hat_name::Union{Nothing,String}=nothing,
+    beta_hat_name::Union{Nothing,String}=nothing
+)
+
+    all_regions = union(df.origin, df.destination)
+    df_square = DataFrame(
+        origin=repeat(all_regions, inner=length(all_regions)),
+        destination=repeat(all_regions, outer=length(all_regions))
+    )
+    leftjoin!(df_square, df, on=[:origin, :destination], makeunique=true)
+    df_square.value[ismissing.(df_square.value)] .= 0.0
+
+    if !isnothing(a_hat_name)
+        df_square[!, a_hat_name][ismissing.(df_square[!, a_hat_name])] .= 1.0
+    end
+
+    if !isnothing(beta_hat_name)
+        df_square[!, beta_hat_name][ismissing.(df_square[!, beta_hat_name])] .= 0
+    end
+
+    return df_square
+end
+
+
 # Create beta_hat matrix within model.jl
 function beta_matrix(
     trade_data::DataFrame,

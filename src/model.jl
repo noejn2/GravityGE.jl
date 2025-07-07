@@ -43,7 +43,8 @@ flows = DataFrame(
 
 `
 """
-function gravityGE(trade_data::DataFrame;
+function gravityGE(
+    trade_data::DataFrame;
     theta::Float64=4.0,
     beta_hat_name::Union{Nothing,String}=nothing,
     a_hat_name::Union{Nothing,String}=nothing,
@@ -54,27 +55,33 @@ function gravityGE(trade_data::DataFrame;
 )
 
     td = TradeData(trade_data; a_hat_name=a_hat_name, beta_hat_name=beta_hat_name) # Validate trade data
+    td_df = td.df
 
-    sort!(td.df, ["origin", "destination"])
-    X = reshape(trade_data.value, td.N, td.N)' # byrow = true
+    if !is_square_trade_matrix(td_df)
+        @warn "Trade data is not square. Completing it automatically. All missing trade connections are assumed to have zero flow. Missing values for a_hat_name and beta_hat_name are assumed to be 1.0 and 0.0, respectively such that they do not affect the model."
+        td_df = complete_square_matrix(td_df, a_hat_name, beta_hat_name)
+    end
+
+    sort!(td_df, ["origin", "destination"])
+    X = reshape(td_df.value, td.N, td.N)' # byrow = true
 
     B = if isnothing(beta_hat_name)
         ones(td.N, td.N) # Default beta matrix
     else
-        beta_matrix(td.df, beta_hat_name, td.N)
+        beta_matrix(td_df, beta_hat_name, td.N)
     end
 
     A_matrix = if isnothing(a_hat_name)
         ones(td.N, 1) # Default a matrix
     else
-        a_matrix(td.df, a_hat_name, td.N)
+        a_matrix(td_df, a_hat_name, td.N)
     end
 
     # check if a_hat values repeat across each origin region
     if !isnothing(a_hat_name)
-        a_vec = td.df[:, a_hat_name]
-        for i in unique(td.df.origin)
-            if length(unique(a_vec[td.df.origin.==i])) != 1
+        a_vec = td_df[:, a_hat_name]
+        for i in unique(td_df.origin)
+            if length(unique(a_vec[td_df.origin.==i])) != 1
                 error("a_hat values must be constant for each origin region.")
             end
         end

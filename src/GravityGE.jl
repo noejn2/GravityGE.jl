@@ -7,7 +7,7 @@ This module provides functionality to analyze trade flows between countries base
 module GravityGE
 
 export gravityGE
-using DataFrames, LinearAlgebra, Statistics
+using DataFrames, LinearAlgebra, Statistics, Random, Infiltrator
 
 include("initializers.jl") # Helper functions
 include("TradeData.jl") # TradeData Struct

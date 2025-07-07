@@ -30,6 +30,11 @@ struct TradeData
             error("Non-zero flows detected between identical regions.")
         end
 
+        # check that all pairs origin==destination have a non-zero positive value
+        if any(row -> row.value <= 0, eachrow(df[df.origin.==df.destination, :]))
+            error("Flows between identical regions must be positive and non-zero.")
+        end
+
         # Further checks on trade values
         variable_checks(df[:, "value"])
 
@@ -57,7 +62,7 @@ struct TradeData
 
         end
 
-        return new(df)
+        return new(deepcopy(df)) # Return a new instance with a deep copy of the DataFrame
     end
 end
 
@@ -66,20 +71,24 @@ function Base.getproperty(
     td::TradeData,
     name::Symbol
 )
+
+    function region_count(td::TradeData)
+        return length(union(td.df.origin, td.df.destination))
+    end
+
     if name == :N # Number of regions
-        return union(td.df.origin, td.df.destination) |> length
+        return region_count(td)
 
     elseif name == :ones_vector # Create a vector of ones
-        N = union(td.df.origin, td.df.destination) |> length
-        return ones(N, 1)
+        return ones(region_count(td), 1)
 
     elseif name == :ones_matrix # Create a symmetric matrix of ones
-        N = union(td.df.origin, td.df.destination) |> length
-        return ones(N, N)
+        return ones(region_count(td), region_count(td))
 
     elseif name == :df # Default DataFrame
         return getfield(td, :df)
     else
         throw(ArgumentError("Unknown property: $name"))
     end
+
 end
