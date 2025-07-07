@@ -53,7 +53,7 @@ function gravityGE(trade_data::DataFrame;
     crit=1.0
 )
 
-    td = TradeData(trade_data) # Validate trade data
+    td = TradeData(trade_data; a_hat_name=a_hat_name, beta_hat_name=beta_hat_name) # Validate trade data
 
     sort!(td.df, ["origin", "destination"])
     X = reshape(trade_data.value, td.N, td.N)' # byrow = true
@@ -68,14 +68,6 @@ function gravityGE(trade_data::DataFrame;
         ones(td.N, 1) # Default a matrix
     else
         a_matrix(td.df, a_hat_name, td.N)
-    end
-
-    #= a_hat & beta_hat checks =#
-    if !isnothing(a_hat_name)
-        var_hat_checks(td.df, a_hat_name)
-    end
-    if !isnothing(beta_hat_name)
-        var_hat_checks(td.df, beta_hat_name)
     end
 
     # check if a_hat values repeat across each origin region

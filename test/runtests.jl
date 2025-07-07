@@ -1,4 +1,4 @@
-using Test, DataFrames
+using Test, DataFrames, Infiltrator
 using GravityGE
 
 @testset "gravityGE baseline tests" begin
@@ -8,6 +8,7 @@ using GravityGE
         value=ones(26^2)
     )
 
+    Infiltrator.toggle_async_check(false)
     # No change: additive
     out = gravityGE(flows; theta=4.0)
     @test out[:new_welfare].welfare ≈ ones(26)
