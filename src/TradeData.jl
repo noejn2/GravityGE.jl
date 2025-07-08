@@ -1,4 +1,6 @@
-#= Unmutable dataframe: region lists, trade flow values, a_hat (productivity), and beta_hat (trade costs) =#
+"""
+Documentation for TradeData struct
+"""
 struct TradeData
     df::DataFrame
 
