@@ -1,9 +1,9 @@
 """
     gravityGE(
-        trade_data::DataFrame; 
-        theta=4.0, 
-        beta_hat_name=nothing, 
-        a_hat_name=nothing, 
+        trade_data::DataFrame;
+        theta=4.0,
+        beta_hat_name=nothing,
+        a_hat_name=nothing,
         multiplicative=false,
         tol = 1e-8,
         max_iter = 1_000_000,
@@ -43,65 +43,68 @@ flows = DataFrame(
 
 `
 """
-function gravityGE(trade_data::DataFrame;
+function gravityGE(
+    trade_data::DataFrame;
     theta::Float64=4.0,
     beta_hat_name::Union{Nothing,String}=nothing,
     a_hat_name::Union{Nothing,String}=nothing,
     multiplicative::Bool=false,
-    tol = 1e-8,
-    max_iter = 1_000_000,
-    crit = 1.0
-    )
-    
-    required_cols = ["orig", "dest", "flow"] # Should change to a struct that checks earlier
-    if !all(col -> col ∈ names(trade_data), required_cols)
-        error("Data set must contain columns 'orig', 'dest', and 'flow'.")
+    tol=1e-8,
+    max_iter=1_000_000,
+    crit=1.0
+)
+
+    td = TradeData(trade_data; a_hat_name=a_hat_name, beta_hat_name=beta_hat_name) # Validate trade data
+    td_df = td.df
+
+    if !is_square_trade_matrix(td_df)
+        @warn "Trade data is not square. Completing it automatically. All missing trade connections are assumed to have zero flow. Missing values for a_hat_name and beta_hat_name are assumed to be 1.0 and 0.0, respectively such that they do not affect the model."
+        td_df = complete_square_matrix(td_df, a_hat_name, beta_hat_name)
     end
 
-    if any(x -> x < 0, trade_data.flow)
-        error("Negative flow values detected.")
+    sort!(td_df, ["origin", "destination"])
+    X = reshape(td_df.value, td.N, td.N)' # byrow = true
+
+    B = if isnothing(beta_hat_name)
+        ones(td.N, td.N) # Default beta matrix
+    else
+        beta_matrix(td_df, beta_hat_name, td.N)
     end
 
-    if nrow(trade_data) != nrow(unique(trade_data[:, ["orig", "dest"]]))
-        error("Data set contains duplicate origin-destination pairs.")
+    A_matrix = if isnothing(a_hat_name)
+        ones(td.N, 1) # Default a matrix
+    else
+        a_matrix(td_df, a_hat_name, td.N)
     end
 
-    N = get_number_countries(trade_data)
-    ones_matrix = ones(N, 1)
-
-
-    # ----: Reshape trade matrix :----
-    sort!(trade_data, ["orig", "dest"])
-    X = reshape(trade_data.flow, N, N)' # byrow = true
-
-    B = beta_matrix(trade_data, beta_hat_name)
-    a_matrix = a_matrix(trade_data, a_hat_name)
-
-
-    # ----: Warn on zero diagonals :----
-    if minimum(diag(X)) == 0
-        @warn("Zero flow values detected in diagonal.")
+    # check if a_hat values repeat across each origin region
+    if !isnothing(a_hat_name)
+        a_vec = td_df[:, a_hat_name]
+        for i in unique(td_df.origin)
+            if length(unique(a_vec[td_df.origin.==i])) != 1
+                error("a_hat values must be constant for each origin region.")
+            end
+        end
     end
-    replace!(X, NaN => 0.0)
 
     # ----: Initialization :----
-    w_hat = ones_matrix
-    P_hat = ones_matrix
+    w_hat = td.ones_vector
+    P_hat = td.ones_vector
     E = sum(X, dims=1)' # expenditure
     Y = sum(X, dims=2)  # income
     D = E - Y
 
-    pi = X ./ kron(E', ones_matrix)         # shares
+    pi = X ./ kron(E', td.ones_vector)         # shares
     iter = 0
 
     while crit > tol && iter < max_iter
         iter += 1
         X_last_step = copy(X)
 
-        w_hat = (a_matrix .* ((pi .* B) * (E ./ P_hat)) ./ Y) .^ (1 / (1 + theta))
+        w_hat = (A_matrix .* ((pi .* B) * (E ./ P_hat)) ./ Y) .^ (1 / (1 + theta))
         w_hat *= sum(Y) / sum(Y .* w_hat)
 
-        P_hat = (pi' .* B') * (a_matrix .* w_hat .^ (-theta))
+        P_hat = (pi' .* B') * (A_matrix .* w_hat .^ (-theta))
 
         if multiplicative
             E = (Y + D) .* w_hat
@@ -109,8 +112,8 @@ function gravityGE(trade_data::DataFrame;
             E = Y .* w_hat + D
         end
 
-        pi_new = (pi .* B) .* (kron(a_matrix .* (w_hat .^ (-theta)), ones_matrix')) ./ kron(P_hat, ones_matrix')
-        X = pi_new .* kron(E', ones_matrix)
+        pi_new = (pi .* B) .* (kron(A_matrix .* (w_hat .^ (-theta)), td.ones_vector')) ./ kron(P_hat, td.ones_vector')
+        X = pi_new .* kron(E', td.ones_vector)
 
         crit = maximum(filter(!isnan, abs.(log.(X) .- log.(X_last_step))))
     end
@@ -127,12 +130,12 @@ function gravityGE(trade_data::DataFrame;
     end
 
     # ----: Return results :----
-    origs = repeat(unique(trade_data.orig), inner=N)
-    dests = repeat(unique(trade_data.dest), outer=N)
+    origs = repeat(unique(trade_data.origin), inner=td.N)
+    dests = repeat(unique(trade_data.destination), outer=td.N)
 
     new_trade = DataFrame(orig=origs, dest=dests, new_trade=vec(X'))
     new_welfare = DataFrame(
-        orig=unique(trade_data.orig),
+        orig=unique(trade_data.origin),
         welfare=vec(welfare),
         nominal_wage=vec(w_hat),
         price_index=vec(P_hat .^ (-1 / theta))

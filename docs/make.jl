@@ -1,19 +1,32 @@
-using Documenter
-using GravityGE
+using Documenter, GravityGE, DataFrames, LinearAlgebra, Statistics
 
-makedocs(
-    sitename="GravityGE.jl",
-    format=Documenter.HTML(),
+makedocs(;
     modules=[GravityGE],
+    authors="Noé J Nava <noejnava2@gmail.com> and contributors",
+    sitename="GravityGE.jl",
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://noejnava.github.io/GravityGE.jl",
+        edit_link="main",
+        assets=String[],
+    ),
     pages=[
         "Home" => "index.md",
+        "Manual" => [
+            "Understanding input/output" => "manual/understanding.md",
+            "Data Structures" => "manual/data-structures.md",
+            "Examples" => "manual/examples.md",
+        ],
+        "API Reference" => [
+            "Main Function" => "api/functions.md",
+            # "Data Types" => "api/types.md",
+            # "Utilities" => "api/utilities.md",
+        ],
     ],
-    repo="github.com/noejn2/GravityGE.jl",  # 👈 this fixes the error
-)
-
-deploydocs(
-    repo="github.com/noejn2/GravityGE.jl",
-    branch="gh-pages",
-    devbranch="main",
-    push_preview=false,
+    repo="https://github.com/noejnava/GravityGE.jl/blob/{commit}{path}#{line}",
+    #remotes=nothing,
+    checkdocs=:exports,
+    doctest=true,
+    linkcheck=true,
+    #    strict=true,
 )
