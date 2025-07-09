@@ -21,7 +21,6 @@ Documenter = "1.13.0"
 Infiltrator = "1.9.2"
 NamedArrays = "0.10.4"
 PkgTemplates = "0.7.56"
-Random = "1.11.0"
 Revise = "3.8.0"
 julia = "1.11"
 
