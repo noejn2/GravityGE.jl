@@ -30,3 +30,10 @@ makedocs(;
     linkcheck=true,
     #    strict=true,
 )
+
+
+deploydocs(;
+    repo = "github.com/noejnava/GravityGE.jl",
+    devbranch = "main",
+    branch = "gh-pages"
+)
