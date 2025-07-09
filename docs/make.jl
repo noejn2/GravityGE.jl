@@ -1,4 +1,4 @@
-using Documenter, GravityGE, DataFrames, LinearAlgebra, Statistics
+using Documenter, GravityGE #, DataFrames, LinearAlgebra, Statistics
 
 makedocs(;
     modules=[GravityGE],
