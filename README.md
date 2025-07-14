@@ -7,7 +7,7 @@
 
 For detailed documentation, examples, and API reference, visit the stable documentation:
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://noejnava.github.io/GravityGE.jl/)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://noejn2.github.io/GravityGE.jl/)
 
 
 
