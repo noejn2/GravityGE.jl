@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Examples · GravityGE.jl</title><meta name="title" content="Examples · GravityGE.jl"/><meta property="og:title" content="Examples · GravityGE.jl"/><meta property="twitter:title" content="Examples · GravityGE.jl"/><meta name="description" content="Documentation for GravityGE.jl."/><meta property="og:description" content="Documentation for GravityGE.jl."/><meta property="twitter:description" content="Documentation for GravityGE.jl."/><meta property="og:url" content="https://noejnava.github.io/GravityGE.jl/manual/examples/"/><meta property="twitter:url" content="https://noejnava.github.io/GravityGE.jl/manual/examples/"/><link rel="canonical" href="https://noejnava.github.io/GravityGE.jl/manual/examples/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">GravityGE.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><span class="tocitem">Manual</span><ul><li><a class="tocitem" href="../understanding/">Understanding input/output</a></li><li><a class="tocitem" href="../data-structures/">Data Structures</a></li><li class="is-active"><a class="tocitem" href>Examples</a><ul class="internal"><li><a class="tocitem" href="#Basic-Trade-Analysis"><span>Basic Trade Analysis</span></a></li><li><a class="tocitem" href="#Productivity-Shock-Analysis"><span>Productivity Shock Analysis</span></a></li><li><a class="tocitem" href="#Trade-Cost-Shock-Analysis"><span>Trade Cost Shock Analysis</span></a></li><li><a class="tocitem" href="#Advanced-Configuration"><span>Advanced Configuration</span></a></li><li><a class="tocitem" href="#Working-with-Real-Data"><span>Working with Real Data</span></a></li></ul></li></ul></li><li><span class="tocitem">API Reference</span><ul><li><a class="tocitem" href="../../api/functions/">Main Function</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Manual</a></li><li class="is-active"><a href>Examples</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Examples</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/noejn2/GravityGE.jl/blob/main/docs/src/manual/examples.md#L" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h1><p>This page provides comprehensive examples of using GravityGE.jl for different types of trade analysis.</p><h2 id="Basic-Trade-Analysis"><a class="docs-heading-anchor" href="#Basic-Trade-Analysis">Basic Trade Analysis</a><a id="Basic-Trade-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Basic-Trade-Analysis" title="Permalink"></a></h2><h3 id="Simple-Two-Country-Model"><a class="docs-heading-anchor" href="#Simple-Two-Country-Model">Simple Two-Country Model</a><a id="Simple-Two-Country-Model-1"></a><a class="docs-heading-anchor-permalink" href="#Simple-Two-Country-Model" title="Permalink"></a></h3><pre><code class="language-julia hljs">using GravityGE
+using DataFrames
+
+# Create bilateral trade data for USA and Canada
+trade_data = DataFrame(
+    origin = [&quot;USA&quot;, &quot;USA&quot;, &quot;CAN&quot;, &quot;CAN&quot;],
+    destination = [&quot;USA&quot;, &quot;CAN&quot;, &quot;USA&quot;, &quot;CAN&quot;],
+    value = [500.0, 100.0, 80.0, 200.0]
+)
+
+# Run basic gravity GE analysis
+result = gravityGE(trade_data; theta=4.0)
+
+# Examine results
+println(&quot;Welfare changes:&quot;)
+println(result[:new_welfare])
+
+println(&quot;\nWage changes:&quot;)
+println(result[:new_wages])</code></pre><h3 id="Multi-Country-Analysis"><a class="docs-heading-anchor" href="#Multi-Country-Analysis">Multi-Country Analysis</a><a id="Multi-Country-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Multi-Country-Analysis" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Create data for multiple countries
+countries = [&quot;USA&quot;, &quot;CAN&quot;, &quot;MEX&quot;, &quot;BRA&quot;]
+n_countries = length(countries)
+
+# Generate all bilateral pairs
+origins = repeat(countries, inner=n_countries)
+destinations = repeat(countries, outer=n_countries)
+
+# Sample trade values (in practice, use real data)
+trade_values = [
+    500.0, 100.0, 50.0, 30.0,   # USA exports
+    80.0,  200.0, 20.0, 15.0,   # CAN exports
+    40.0,  25.0,  150.0, 10.0,  # MEX exports
+    20.0,  12.0,  8.0,   100.0  # BRA exports
+]
+
+multi_trade = DataFrame(
+    origin = origins,
+    destination = destinations,
+    value = trade_values
+)
+
+# Analyze multi-country trade
+result = gravityGE(multi_trade; theta=5.0)</code></pre><h2 id="Productivity-Shock-Analysis"><a class="docs-heading-anchor" href="#Productivity-Shock-Analysis">Productivity Shock Analysis</a><a id="Productivity-Shock-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Productivity-Shock-Analysis" title="Permalink"></a></h2><h3 id="Uniform-Productivity-Increase"><a class="docs-heading-anchor" href="#Uniform-Productivity-Increase">Uniform Productivity Increase</a><a id="Uniform-Productivity-Increase-1"></a><a class="docs-heading-anchor-permalink" href="#Uniform-Productivity-Increase" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Add productivity shock column
+trade_data.productivity = [1.1, 1.1, 1.1, 1.1]  # 10% increase for all
+
+# Run analysis with productivity shocks
+result = gravityGE(trade_data; theta=4.0, a_hat_name=&quot;productivity&quot;)
+
+println(&quot;Welfare effects of 10% productivity increase:&quot;)
+println(result[:new_welfare])</code></pre><h3 id="Country-Specific-Productivity-Shocks"><a class="docs-heading-anchor" href="#Country-Specific-Productivity-Shocks">Country-Specific Productivity Shocks</a><a id="Country-Specific-Productivity-Shocks-1"></a><a class="docs-heading-anchor-permalink" href="#Country-Specific-Productivity-Shocks" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Create data with country-specific shocks
+trade_data = DataFrame(
+    origin = [&quot;USA&quot;, &quot;USA&quot;, &quot;CAN&quot;, &quot;CAN&quot;],
+    destination = [&quot;USA&quot;, &quot;CAN&quot;, &quot;USA&quot;, &quot;CAN&quot;],
+    value = [500.0, 100.0, 80.0, 200.0],
+    productivity = [1.2, 1.2, 0.9, 0.9]  # USA +20%, CAN -10%
+)
+
+result = gravityGE(trade_data; theta=4.0, a_hat_name=&quot;productivity&quot;)
+
+println(&quot;Asymmetric productivity shock effects:&quot;)
+for (i, country) in enumerate([&quot;USA&quot;, &quot;CAN&quot;])
+    welfare = result[:new_welfare].welfare[i]
+    println(&quot;$country welfare change: $(round(welfare, digits=3))&quot;)
+end</code></pre><h2 id="Trade-Cost-Shock-Analysis"><a class="docs-heading-anchor" href="#Trade-Cost-Shock-Analysis">Trade Cost Shock Analysis</a><a id="Trade-Cost-Shock-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Trade-Cost-Shock-Analysis" title="Permalink"></a></h2><h3 id="Bilateral-Trade-Cost-Reduction"><a class="docs-heading-anchor" href="#Bilateral-Trade-Cost-Reduction">Bilateral Trade Cost Reduction</a><a id="Bilateral-Trade-Cost-Reduction-1"></a><a class="docs-heading-anchor-permalink" href="#Bilateral-Trade-Cost-Reduction" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Create trade cost shock data
+trade_data = DataFrame(
+    origin = [&quot;USA&quot;, &quot;USA&quot;, &quot;CAN&quot;, &quot;CAN&quot;],
+    destination = [&quot;USA&quot;, &quot;CAN&quot;, &quot;USA&quot;, &quot;CAN&quot;],
+    value = [500.0, 100.0, 80.0, 200.0],
+    trade_costs = [0.0, -0.2, -0.2, 0.0]  # 20% bilateral cost reduction
+)
+
+result = gravityGE(trade_data; theta=4.0, beta_hat_name=&quot;trade_costs&quot;)
+
+println(&quot;Effects of 20% bilateral trade cost reduction:&quot;)
+println(result[:new_welfare])</code></pre><h3 id="Regional-Trade-Agreement-Simulation"><a class="docs-heading-anchor" href="#Regional-Trade-Agreement-Simulation">Regional Trade Agreement Simulation</a><a id="Regional-Trade-Agreement-Simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Regional-Trade-Agreement-Simulation" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Simulate NAFTA-style agreement
+countries = [&quot;USA&quot;, &quot;CAN&quot;, &quot;MEX&quot;, &quot;BRA&quot;]
+n = length(countries)
+
+# Create full bilateral trade matrix
+trade_matrix = DataFrame(
+    origin = repeat(countries, inner=n),
+    destination = repeat(countries, outer=n),
+    value = [500, 100, 50, 30,   # USA
+             80, 200, 20, 15,    # CAN
+             40, 25, 150, 10,    # MEX
+             20, 12, 8, 100]     # BRA
+)
+
+# NAFTA members get preferential treatment
+nafta_members = [&quot;USA&quot;, &quot;CAN&quot;, &quot;MEX&quot;]
+trade_matrix.trade_costs = zeros(nrow(trade_matrix))
+
+for i in 1:nrow(trade_matrix)
+    origin = trade_matrix.origin[i]
+    dest = trade_matrix.destination[i]
+
+    # Internal trade costs are always zero
+    if origin == dest
+        trade_matrix.trade_costs[i] = 0.0
+    # NAFTA members get 30% cost reduction
+    elseif origin in nafta_members &amp;&amp; dest in nafta_members
+        trade_matrix.trade_costs[i] = -0.3
+    # Non-NAFTA trade unchanged
+    else
+        trade_matrix.trade_costs[i] = 0.0
+    end
+end
+
+# Analyze regional trade agreement
+result = gravityGE(trade_matrix; theta=4.0, beta_hat_name=&quot;trade_costs&quot;)
+
+println(&quot;NAFTA simulation welfare effects:&quot;)
+for (i, country) in enumerate(countries)
+    welfare = result[:new_welfare].welfare[i]
+    println(&quot;$country: $(round((welfare-1)*100, digits=1))%&quot;)
+end</code></pre><h2 id="Advanced-Configuration"><a class="docs-heading-anchor" href="#Advanced-Configuration">Advanced Configuration</a><a id="Advanced-Configuration-1"></a><a class="docs-heading-anchor-permalink" href="#Advanced-Configuration" title="Permalink"></a></h2><h3 id="Custom-Convergence-Settings"><a class="docs-heading-anchor" href="#Custom-Convergence-Settings">Custom Convergence Settings</a><a id="Custom-Convergence-Settings-1"></a><a class="docs-heading-anchor-permalink" href="#Custom-Convergence-Settings" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Use stricter convergence criteria
+result = gravityGE(
+    trade_data;
+    theta=4.0,
+    tol=1e-10,          # Tighter tolerance
+    max_iter=5000,      # More iterations allowed
+    multiplicative=false # Additive deficits
+)
+
+# Check convergence
+if haskey(result, :iterations)
+    println(&quot;Converged in $(result[:iterations]) iterations&quot;)
+end</code></pre><h3 id="Sensitivity-Analysis"><a class="docs-heading-anchor" href="#Sensitivity-Analysis">Sensitivity Analysis</a><a id="Sensitivity-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Sensitivity-Analysis" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Test different theta values
+theta_values = [2.0, 4.0, 6.0, 8.0]
+welfare_sensitivity = Dict()
+
+for theta in theta_values
+    result = gravityGE(trade_data; theta=theta)
+    welfare_sensitivity[theta] = result[:new_welfare].welfare
+end
+
+println(&quot;Welfare sensitivity to theta:&quot;)
+for (theta, welfare) in welfare_sensitivity
+    avg_welfare = mean(welfare)
+    println(&quot;θ = $theta: Average welfare = $(round(avg_welfare, digits=3))&quot;)
+end</code></pre><h2 id="Working-with-Real-Data"><a class="docs-heading-anchor" href="#Working-with-Real-Data">Working with Real Data</a><a id="Working-with-Real-Data-1"></a><a class="docs-heading-anchor-permalink" href="#Working-with-Real-Data" title="Permalink"></a></h2><h3 id="Loading-and-Cleaning-Data"><a class="docs-heading-anchor" href="#Loading-and-Cleaning-Data">Loading and Cleaning Data</a><a id="Loading-and-Cleaning-Data-1"></a><a class="docs-heading-anchor-permalink" href="#Loading-and-Cleaning-Data" title="Permalink"></a></h3><pre><code class="language-julia hljs">using CSV
+
+# Load real trade data
+raw_data = CSV.read(&quot;bilateral_trade.csv&quot;, DataFrame)
+
+# Clean the data
+clean_data = dropmissing(raw_data, [:origin, :destination, :value])
+clean_data = clean_data[clean_data.value .&gt; 0, :]
+
+# Ensure all countries have internal trade
+countries = unique(vcat(clean_data.origin, clean_data.destination))
+internal_trade = DataFrame(
+    origin = countries,
+    destination = countries,
+    value = fill(1000.0, length(countries))  # Placeholder values
+)
+
+# Combine external and internal trade
+full_data = vcat(clean_data, internal_trade)
+full_data = unique(full_data, [:origin, :destination])
+
+# Create TradeData object
+td = TradeData(full_data)
+println(&quot;Analysis ready for $(td.N) countries&quot;)</code></pre><h3 id="Batch-Analysis"><a class="docs-heading-anchor" href="#Batch-Analysis">Batch Analysis</a><a id="Batch-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Batch-Analysis" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Analyze multiple scenarios
+scenarios = [
+    (&quot;Baseline&quot;, Dict()),
+    (&quot;High Elasticity&quot;, Dict(:theta =&gt; 8.0)),
+    (&quot;Low Elasticity&quot;, Dict(:theta =&gt; 2.0)),
+    (&quot;Multiplicative&quot;, Dict(:multiplicative =&gt; true))
+]
+
+results = Dict()
+
+for (name, params) in scenarios
+    println(&quot;Running scenario: $name&quot;)
+    result = gravityGE(trade_data; params...)
+    results[name] = result[:new_welfare].welfare
+end
+
+# Compare results
+println(&quot;\nScenario comparison (average welfare):&quot;)
+for (name, welfare) in results
+    avg = mean(welfare)
+    println(&quot;$name: $(round(avg, digits=3))&quot;)
+end</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../data-structures/">« Data Structures</a><a class="docs-footer-nextpage" href="../../api/functions/">Main Function »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.14.1 on <span class="colophon-date" title="Monday 14 July 2025 12:04">Monday 14 July 2025</span>. Using Julia version 1.11.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
