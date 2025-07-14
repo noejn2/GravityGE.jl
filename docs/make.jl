@@ -1,4 +1,4 @@
-using Documenter, GravityGE, DataFrames, LinearAlgebra, Statistics
+using Documenter, GravityGE #, DataFrames, LinearAlgebra, Statistics
 
 makedocs(;
     modules=[GravityGE],
@@ -29,4 +29,11 @@ makedocs(;
     doctest=true,
     linkcheck=true,
     #    strict=true,
+)
+
+
+deploydocs(;
+    repo = "github.com/noejnava/GravityGE.jl",
+    devbranch = "main",
+    branch = "gh-pages"
 )
