@@ -2,6 +2,16 @@
 
 *A Julia package for gravity models in international trade with general equilibrium effects.*
 
+
+## Documentation
+
+For detailed documentation, examples, and API reference, visit the stable documentation:
+
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://noejnava.github.io/GravityGE.jl/)
+
+
+
+
 ## Overview
 
 GravityGE.jl implements gravity models for analyzing bilateral trade flows with general equilibrium effects. This package is a Julia translation of the [gravityGE R package](https://cran.r-project.org/package=gravityGE).
@@ -69,9 +79,6 @@ trade_data.productivity = [1.1, 1.1, 0.9, 0.9]  # USA +10%, CAN -10%
 result = gravityGE(trade_data; theta=4.0, a_hat_name="productivity")
 ```
 
-## Documentation
-
-For detailed documentation, examples, and API reference, visit the [documentation](https://noejnava.github.io/GravityGE.jl/).
 
 ## Citation
 
