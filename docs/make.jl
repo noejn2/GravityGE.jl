@@ -33,7 +33,7 @@ makedocs(;
 
 
 deploydocs(;
-    repo="github.com/noejnava/GravityGE.jl",
+    repo="github.com/noejn2/GravityGE.jl",
     devbranch="main",
     branch="gh-pages"
 )
