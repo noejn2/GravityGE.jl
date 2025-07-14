@@ -23,7 +23,7 @@ makedocs(;
             # "Utilities" => "api/utilities.md",
         ],
     ],
-    repo="https://github.com/noejnava/GravityGE.jl/blob/{commit}{path}#L{line}",
+    repo="https://github.com/noejn2/GravityGE.jl/blob/{commit}{path}#L{line}",
     #remotes=nothing,
     checkdocs=:exports,
     doctest=true,
