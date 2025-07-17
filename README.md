@@ -30,7 +30,14 @@ The package provides tools for:
 - **Convergence Guarantees**: Robust numerical methods with configurable tolerance
 - **Policy Simulation**: Tools for analyzing trade agreements and policy reforms
 
-## Installation
+## Installation (Julia repositories)
+
+```julia
+using Pkg
+Pkg.add(GravityGE)
+```
+
+## Installation (Development in Github)
 
 ```julia
 using Pkg
